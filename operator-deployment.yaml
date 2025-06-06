@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-operator
+  template:
+    metadata:
+      labels:
+        app: mongodb-operator
+    spec:
+      containers:
+        - name: operator
+          image: mongodb-operator:4
+          imagePullPolicy: IfNotPresent

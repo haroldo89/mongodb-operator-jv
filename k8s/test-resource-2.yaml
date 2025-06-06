@@ -1,0 +1,6 @@
+apiVersion: org.acme/v1
+kind: MongodbCustomResource
+metadata:
+  name: test-mongo-2
+spec:
+  database: mydb
