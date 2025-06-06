@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
         - name: mongodb-operator
-          image: __IMAGE__
+          image: mongodb-operator:0.1.0
           imagePullPolicy: IfNotPresent

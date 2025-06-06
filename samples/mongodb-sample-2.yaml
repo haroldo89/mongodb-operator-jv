@@ -1,7 +1,7 @@
 apiVersion: org.acme/v1
 kind: Mongodb
 metadata:
-  name: test-mongo
+  name: test-mongo-2
 spec:
   database: mydb
   replicas: 1
@@ -27,10 +27,3 @@ spec:
     requests:
       cpu: 100m
       memory: 100Mi
-  config: |
-    maxmemory 200mb
-    maxmemory-samples 5
-    maxmemory-policy allkeys-lru
-    appendonly yes
-    protected-mode no
-    loadmodule /usr/lib/redis/modules/redisgraph.so
