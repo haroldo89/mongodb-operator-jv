@@ -201,3 +201,36 @@ kubectl get mongodb
 
 <!-- mvn clean compile exec:java -Dexec.mainClass="org.acme.Runner" -->
 
+## 📦 Makefile: Tareas automatizadas
+
+El proyecto incluye un `Makefile` que simplifica la compilación, construcción de imágenes y despliegue del operador en Kubernetes.
+
+### ⚙️ Tareas disponibles
+
+| Comando              | Descripción                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| `make build`         | Compila el proyecto con Maven, omitiendo tests                                   |
+| `make image`         | Construye la imagen Docker del operador                                          |
+| `make push`          | Sube la imagen al registro configurado                                           |
+| `make kind-load`     | Carga la imagen Docker al clúster Kind                                           |
+| `make deploy`        | Aplica el `Deployment` en Kubernetes usando la imagen especificada               |
+| `make deploy-crd`    | Aplica el CRD generado automáticamente                                           |
+| `make deploy-roles`  | Aplica roles, bindings y permisos necesarios para ejecutar el operador           |
+| `make deploy-sample` | Aplica un ejemplo de recurso personalizado (`Mongodb`)                           |
+| `make logs`          | Muestra los logs del operador desde Kubernetes                                   |
+| `make clean`         | Elimina los recursos y archivos temporales generados                             |
+| `make all`           | Ejecuta `build`, `image`, `push` y `deploy`                                      |
+| `make all-local`     | Ejecuta todo el flujo local: build, image, load en Kind, CRD, roles y despliegue |
+
+> 📄 El archivo `k8s/operator-deployment.yaml` contiene el manifiesto base del `Deployment`. Durante `make deploy`, se reemplaza dinámicamente `__IMAGE__` por la imagen construida (`mongodb-operator:0.1.0` por defecto).
+
+### ✅ Ejemplo de uso
+
+```bash
+make all-local
+```
+
+Esto compila, construye la imagen, la carga en Kind, aplica permisos, el CRD y despliega el operador en Kubernetes local.
+
+---
+
