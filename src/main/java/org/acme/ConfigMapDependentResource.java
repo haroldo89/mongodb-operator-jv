@@ -1,6 +1,5 @@
 package org.acme;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import io.fabric8.kubernetes.api.model.ConfigMap;
@@ -9,17 +8,15 @@ import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
 import io.javaoperatorsdk.operator.api.reconciler.Context;
 import io.javaoperatorsdk.operator.processing.dependent.kubernetes.CRUDKubernetesDependentResource;
 import io.javaoperatorsdk.operator.processing.dependent.kubernetes.KubernetesDependent;
-import org.acme.MongodbCustomResource;
 
 @KubernetesDependent
 public class ConfigMapDependentResource
-        extends CRUDKubernetesDependentResource<ConfigMap, MongodbCustomResource> {
+        extends CRUDKubernetesDependentResource<ConfigMap, Mongodb> {
 
     public static final String KEY = "key";
 
     @Override
-    protected ConfigMap desired(MongodbCustomResource primary,
-                                Context<MongodbCustomResource> context) {
+    protected ConfigMap desired(Mongodb primary, Context<Mongodb> context) {
         return new ConfigMapBuilder()
                 .withMetadata(
                         new ObjectMetaBuilder()

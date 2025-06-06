@@ -1,14 +1,14 @@
 package org.acme;
 
-import io.fabric8.kubernetes.api.model.ConfigMap;
-import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
-import io.javaoperatorsdk.operator.junit.LocallyRunOperatorExtension;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-
 import static org.acme.ConfigMapDependentResource.KEY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+
+import io.fabric8.kubernetes.api.model.ConfigMap;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import io.javaoperatorsdk.operator.junit.LocallyRunOperatorExtension;
 
 class MongodbReconcilerIntegrationTest {
 
@@ -48,8 +48,8 @@ class MongodbReconcilerIntegrationTest {
         });
     }
 
-    MongodbCustomResource testResource() {
-        var resource = new MongodbCustomResource();
+    Mongodb testResource() {
+        var resource = new Mongodb();
         resource.setMetadata(new ObjectMetaBuilder()
                 .withName(RESOURCE_NAME)
                 .build());

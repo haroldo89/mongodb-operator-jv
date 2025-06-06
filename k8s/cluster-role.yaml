@@ -12,5 +12,5 @@ rules:
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
     
   - apiGroups: ["org.acme"]
-    resources: ["mongodbcustomresources"]
+    resources: ["mongodbs"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
