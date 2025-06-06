@@ -4,7 +4,7 @@ metadata:
   name: mongodb-operator-cluster-role
 rules:
   - apiGroups: [""]
-    resources: ["pods", "services", "configmaps", "secrets"]
+    resources: ["configmaps", "pods", "services", "persistentvolumeclaims"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
   - apiGroups: ["apps"]
@@ -12,5 +12,5 @@ rules:
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
     
   - apiGroups: ["org.acme"]
-    resources: ["mongodbs"]
+    resources: ["mongodbs", "mongodbs/status"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]

@@ -1,0 +1,36 @@
+apiVersion: org.acme/v1
+kind: Mongodb
+metadata:
+  name: test-mongo
+spec:
+  database: mydb
+  replicas: 1
+  storage: 500Mi
+  # Uncomment the line below to specify a storage class for the test
+  # storageClassName: test-sc
+  # specify accessModes ReadWriteOnce, ReadWriteMany ReadOnlyMany
+  accessModes: 
+  - ReadWriteOnce
+  # - ReadWriteMany
+  # - ReadOnlyMany
+   # Set deletePVC to true to delete PVCs when scaling down and when the cluster is deleted
+  deletePVC: false
+  image: mongo:latest
+  purgekeysonrebalance: false
+  labels:
+    team: team-a
+    custom: labels
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  config: |
+    maxmemory 200mb
+    maxmemory-samples 5
+    maxmemory-policy allkeys-lru
+    appendonly yes
+    protected-mode no
+    loadmodule /usr/lib/redis/modules/redisgraph.so
